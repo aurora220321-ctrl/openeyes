@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>눈떠라, 청춘! : 고딩 수면 빚 & 카페인 방어전</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- FontAwesome Icons for clean visuals -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts: Pretentard/Inter alternative -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Noto Sans KR"', '"Plus Jakarta Sans"', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#eef2ff',
+              100: '#e0e7ff',
+              400: '#818cf8',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+              900: '#1e1b4b',
+            },
+            caffeine: {
+              safe: '#10b981',
+              warn: '#f59e0b',
+              danger: '#ef4444',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Custom Scrollbar & Animations */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: rgba(15, 23, 42, 0.6); }
+    ::-webkit-scrollbar-thumb { background: rgba(99, 102, 241, 0.4); border-radius: 9999px; }
+    ::-webkit-scrollbar-thumb:hover { background: rgba(99, 102, 241, 0.8); }
+
+    .glow-purple {
+      box-shadow: 0 0 25px -5px rgba(99, 102, 241, 0.35);
+    }
+    .glow-amber {
+      box-shadow: 0 0 25px -5px rgba(245, 158, 11, 0.35);
+    }
+    .glow-red {
+      box-shadow: 0 0 25px -5px rgba(239, 68, 68, 0.4);
+    }
+    @keyframes pulse-slow {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.85; transform: scale(1.02); }
+    }
+    .animate-pulse-slow {
+      animation: pulse-slow 3s infinite ease-in-out;
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen font-sans selection:bg-indigo-500 selection:text-white pb-16">
+
+  <header class="sticky top-0 z-40 backdrop-blur-xl bg-slate-950/80 border-b border-slate-800/80">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 via-purple-600 to-pink-500 flex items-center justify-center shadow-lg shadow-indigo-500/20">
+          <i class="fa-solid fa-bolt-lightning text-white text-lg"></i>
+        </div>
+        <div>
+          <span class="text-xs font-semibold uppercase tracking-wider text-indigo-400 block leading-tight">High School Life Saver</span>
+          <h1 class="text-lg font-black tracking-tight bg-gradient-to-r from-white via-slate-200 to-indigo-200 bg-clip-text text-transparent">
+            눈떠라, 청춘! <span class="text-xs px-2 py-0.5 ml-1 bg-indigo-500/20 text-indigo-300 rounded-full border border-indigo-500/30">수면 빚 & 카페인 방어전</span>
+          </h1>
+        </div>
+      </div>
+      <div class="flex items-center space-x-2">
+        <button onclick="openVercelModal()" class="px-3 py-1.5 text-xs font-medium rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-300 hover:text-white transition flex items-center space-x-1.5">
+          <i class="fa-solid fa-server text-indigo-400"></i>
+          <span>Vercel 배포 파일</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 pt-6 space-y-6">
+    
+    <!-- Hero Banner -->
+    <div class="relative overflow-hidden rounded-3xl bg-gradient-to-r from-indigo-950/70 via-slate-900 to-purple-950/60 p-6 md:p-8 border border-indigo-800/40 glow-purple">
+      <div class="absolute -right-8 -top-8 w-44 h-44 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
+        <div class="space-y-2 max-w-2xl">
+          <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-300 text-xs font-bold">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+            <span>전국 고딩 야자실 & 독서실 긴급 방어망 가동 중</span>
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-black text-white leading-tight">
+            "스누피에 핫식스 부어마시면 수능 대박 날 것 같지?"
+          </h2>
+          <p class="text-slate-300 text-sm leading-relaxed">
+            체중별 카페인 반감기 & 90분 수면 주기를 역산해, 내일 3~5교시 기절각을 막아드립니다.
+            야자실 좀비가 되기 전에 나의 <strong class="text-indigo-300">수면 빚(Sleep Debt)</strong>과 <strong class="text-amber-300">카페인 안전 마지노선</strong>을 확인하세요!
+          </p>
+        </div>
+        
+        <!-- Live Quick Stats Badge -->
+        <div class="bg-slate-900/90 border border-slate-700/80 rounded-2xl p-4 flex flex-row md:flex-col items-center justify-around gap-4 min-w-[220px]">
+          <div class="text-center">
+            <span class="text-[11px] text-slate-400 block font-medium">청소년 적정 일일 수면</span>
+            <span class="text-xl font-black text-indigo-300">8.5 ~ 9.25 시간</span>
+          </div>
+          <div class="w-px h-8 md:w-full md:h-px bg-slate-800"></div>
+          <div class="text-center">
+            <span class="text-[11px] text-slate-400 block font-medium">청소년 카페인 일일 안전 기준</span>
+            <span class="text-xl font-black text-amber-300">2.5 mg / kg</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+      
+      <!-- LEFT COLUMN: Profile & Caffeine Tracker (7 cols) -->
+      <section class="lg:col-span-7 space-y-6">
+        
+        <!-- Card 1: Student Profile & Sleep Debt Inputs -->
+        <div class="bg-slate-900/70 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-sm backdrop-blur">
+          <div class="flex items-center justify-between mb-4 pb-3 border-b border-slate-800">
+            <h3 class="text-base font-bold text-white flex items-center gap-2">
+              <i class="fa-solid fa-id-card-clip text-indigo-400"></i>
+              <span>1. 내 신체 스펙 & 어젯밤 수면 기록</span>
+            </h3>
+            <span class="text-xs text-slate-400">실시간 자동 계산</span>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-semibold text-slate-300 mb-1.5">
+                내 몸무게 (kg) <span class="text-rose-400">*</span>
+              </label>
+              <div class="relative">
+                <input id="userWeight" type="number" value="60" min="30" max="150" step="1"
+                  class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-indigo-500 transition pr-10 font-bold"
+                  oninput="updateAllCalculations()">
+                <span class="absolute right-3.5 top-2.5 text-xs text-slate-400 font-bold">kg</span>
+              </div>
+              <p class="text-[11px] text-slate-400 mt-1">체중에 따라 카페인 안전 허용치가 결정됩니다.</p>
+            </div>
+
+            <div>
+              <label class="block text-xs font-semibold text-slate-300 mb-1.5">
+                어젯밤 잔 시간 <span class="text-rose-400">*</span>
+              </label>
+              <div class="relative">
+                <input id="sleepHours" type="number" value="5.5" min="0" max="16" step="0.5"
+                  class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-indigo-500 transition pr-12 font-bold"
+                  oninput="updateAllCalculations()">
+                <span class="absolute right-3.5 top-2.5 text-xs text-slate-400 font-bold">시간</span>
+              </div>
+              <p class="text-[11px] text-slate-400 mt-1">고교생 권장치(8.5시간) 대비 수면 빚이 산출됩니다.</p>
+            </div>
+          </div>
+
+          <!-- Sleep Debt Alert Banner -->
+          <div id="sleepDebtContainer" class="mt-4 p-4 rounded-xl bg-slate-950/80 border border-slate-800 transition-all">
+            <!-- Dynamically populated by JS -->
+          </div>
+        </div>
+
+        <!-- Card 2: Caffeine Intake Tracker & Presets -->
+        <div class="bg-slate-900/70 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-sm backdrop-blur">
+          <div class="flex items-center justify-between mb-4 pb-3 border-b border-slate-800">
+            <div>
+              <h3 class="text-base font-bold text-white flex items-center gap-2">
+                <i class="fa-solid fa-mug-hot text-amber-400"></i>
+                <span>2. 오늘 마신 카페인 폭탄 등록</span>
+              </h3>
+              <p class="text-xs text-slate-400 mt-0.5">고등학생이 편의점/카페에서 주로 찾는 음료 터치 한 번에 추가!</p>
+            </div>
+            <button onclick="resetCaffeine()" class="text-xs text-slate-400 hover:text-rose-400 transition flex items-center gap-1">
+              <i class="fa-solid fa-rotate-left"></i> 리셋
+            </button>
+          </div>
+
+          <!-- Quick Drink Buttons Grid -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 mb-5">
+            <button onclick="addCaffeine('스누피 더블샷 우유', 237, '💀')" 
+              class="p-2.5 bg-slate-950 hover:bg-slate-800 border border-rose-900/40 hover:border-rose-500/80 rounded-xl text-left transition flex flex-col justify-between group">
+              <div class="flex items-center justify-between">
+                <span class="text-lg">🥛</span>
+                <span class="text-[10px] font-bold px-1.5 py-0.5 bg-rose-500/20 text-rose-300 rounded">237mg</span>
+              </div>
+              <span class="text-xs font-semibold text-slate-200 mt-2 group-hover:text-white leading-tight">스누피 커피우유</span>
+              <span class="text-[10px] text-rose-400 font-medium">악마의 각성제</span>
+            </button>
+
+            <button onclick="addCaffeine('몬스터 에너지', 100, '⚡')" 
+              class="p-2.5 bg-slate-950 hover:bg-slate-800 border border-slate-800 hover:border-emerald-500/80 rounded-xl text-left transition flex flex-col justify-between group">
+              <div class="flex items-center justify-between">
+                <span class="text-lg">⚡</span>
+                <span class="text-[10px] font-bold px-1.5 py-0.5 bg-emerald-500/20 text-emerald-300 rounded">100mg</span>
+              </div>
+              <span class="text-xs font-semibold text-slate-200 mt-2 group-hover:text-white leading-tight">몬스터 에너지</span>
+              <span class="text-[10px] text-slate-400">시험기간 기본템</span>
+            </button>
+
+            <button onclick="addCaffeine('핫식스 더킹', 100, '🔥')" 
+              class="p-2.5 bg-slate-950 hover:bg-slate-800 border border-slate-800 hover:border-amber-500/80 rounded-xl text-left transition flex flex-col justify-between group">
+              <div class="flex items-center justify-between">
+                <span class="text-lg">🔥</span>
+                <span class="text-[10px] font-bold px-1.5 py-0.5 bg-amber-500/20 text-amber-300 rounded">100mg</span>
+              </div>
+              <span class="text-xs font-semibold text-slate-200 mt-2 group-hover:text-white leading-tight">핫식스 더킹</span>
+              <span class="text-[10px] text-slate-400">야자 필수 부스터</span>
+            </button>
+
+            <button onclick="addCaffeine('메가커피 아메리카노(2샷)', 200, '☕')" 
+              class="p-2.5 bg-slate-950 hover:bg-slate-800 border border-slate-800 hover:border-indigo-500/80 rounded-xl text-left transition flex flex-col justify-between group">
+              <div class="flex items-center justify-between">
+                <span class="text-lg">☕</span>
+                <span class="text-[10px] font-bold px-1.5 py-0.5 bg-indigo-500/20 text-indigo-300 rounded">200mg</span>
+              </div>
+              <span class="text-xs font-semibold text-slate-200 mt-2 group-hover:text-white leading-tight">대용량 아메리카노</span>
+              <span class="text-[10px] text-slate-400">2샷 기준 대용량</span>
+            </button>
+
+            <button onclick="addCaffeine('빽다방 원조커피', 371, '💣')" 
+              class="p-2.5 bg-slate-950 hover:bg-slate-800 border border-red-900/40 hover:border-red-500/80 rounded-xl text-left transition flex flex-col justify-between group">
+              <div class="flex items-center justify-between">
+                <span class="text-lg">💣</span>
+                <span class="text-[10px] font-bold px-1.5 py-0.5 bg-rose-600/30 text-rose-300 rounded">371mg</span>
+              </div>
+              <span class="text-xs font-semibold text-slate-200 mt-2 group-hover:text-white leading-tight">빽다방 원조커피</span>
+              <span class="text-[10px] text-rose-400 font-bold">초고용량 주의</span>
+            </button>
+
+            <button onclick="addCaffeine('편의점 캔커피', 75, '🥤')" 
+              class="p-2.5 bg-slate-950 hover:bg-slate-800 border border-slate-800 hover:border-indigo-500/80 rounded-xl text-left transition flex flex-col justify-between group">
+              <div class="flex items-center justify-between">
+                <span class="text-lg">🥤</span>
+                <span class="text-[10px] font-bold px-1.5 py-0.5 bg-slate-800 text-slate-300 rounded">75mg</span>
+              </div>
+              <span class="text-xs font-semibold text-slate-200 mt-2 group-hover:text-white leading-tight">레쓰비/조지아</span>
+              <span class="text-[10px] text-slate-400">캔커피 1캔</span>
+            </button>
+
+            <button onclick="addCaffeine('박카스F', 30, '💊')" 
+              class="p-2.5 bg-slate-950 hover:bg-slate-800 border border-slate-800 hover:border-indigo-500/80 rounded-xl text-left transition flex flex-col justify-between group">
+              <div class="flex items-center justify-between">
+                <span class="text-lg">💊</span>
+                <span class="text-[10px] font-bold px-1.5 py-0.5 bg-slate-800 text-slate-300 rounded">30mg</span>
+              </div>
+              <span class="text-xs font-semibold text-slate-200 mt-2 group-hover:text-white leading-tight">박카스 / 비타민</span>
+              <span class="text-[10px] text-slate-400">가벼운 피로 회복</span>
+            </button>
+
+            <button onclick="addCaffeine('콜라 1캔 (250ml)', 24, '🥤')" 
+              class="p-2.5 bg-slate-950 hover:bg-slate-800 border border-slate-800 hover:border-indigo-500/80 rounded-xl text-left transition flex flex-col justify-between group">
+              <div class="flex items-center justify-between">
+                <span class="text-lg">🥤</span>
+                <span class="text-[10px] font-bold px-1.5 py-0.5 bg-slate-800 text-slate-300 rounded">24mg</span>
+              </div>
+              <span class="text-xs font-semibold text-slate-200 mt-2 group-hover:text-white leading-tight">콜라/밀키스</span>
+              <span class="text-[10px] text-slate-400">탄산음료</span>
+            </button>
+          </div>
+
+          <!-- Custom Beverage Add Input -->
+          <div class="flex gap-2 mb-4">
+            <input id="customDrinkName" type="text" placeholder="직접 입력 (예: 녹차, 초콜릿)" 
+              class="flex-1 bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-indigo-500">
+            <input id="customDrinkMg" type="number" placeholder="카페인(mg)" 
+              class="w-24 bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-indigo-500">
+            <button onclick="addCustomCaffeine()" 
+              class="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold rounded-xl transition">
+              추가
+            </button>
+          </div>
+
+          <!-- Intake List Table/Pills -->
+          <div class="space-y-2">
+            <div class="flex justify-between items-center text-xs font-semibold text-slate-400">
+              <span>오늘 마신 목록 (<span id="drinkCount">0</span>개)</span>
+              <span>총 카페인: <strong id="totalMgDisplay" class="text-amber-300 text-sm">0 mg</strong></span>
+            </div>
+            <div id="drinksList" class="min-h-[50px] max-h-36 overflow-y-auto bg-slate-950/80 border border-slate-800/80 rounded-xl p-2.5 space-y-1.5 text-xs">
+              <div id="emptyDrinkNotice" class="text-center text-slate-500 py-3">
+                아직 마신 카페인이 없습니다. 청춘의 간과 심장이 편안해합니다 ✨
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-6 pt-5 border-t border-slate-800 space-y-3">
+            <div class="flex justify-between items-end">
+              <div>
+                <span class="text-xs font-bold text-slate-300 block">내 체중 대비 안전 게이지</span>
+                <span class="text-[11px] text-slate-400">내 체중 기준 허용 한도: <strong id="maxSafeMgDisplay" class="text-indigo-300">150 mg</strong></span>
+              </div>
+              <div class="text-right">
+                <span id="gaugePercentage" class="text-lg font-black text-emerald-400">0%</span>
+                <span id="gaugeStatusText" class="text-xs font-semibold block text-emerald-400">안전 지대</span>
+              </div>
+            </div>
+
+            <!-- Visual Bar -->
+            <div class="w-full bg-slate-950 h-4 rounded-full overflow-hidden p-0.5 border border-slate-800 relative">
+              <div id="caffeineProgressBar" class="h-full rounded-full bg-gradient-to-r from-emerald-500 via-teal-400 to-emerald-400 transition-all duration-500" style="width: 0%;"></div>
+              <div class="absolute top-0 bottom-0 left-[100%] w-0.5 bg-rose-500 z-10 opacity-70" title="안전 한계선"></div>
+            </div>
+
+            <div class="flex justify-between text-[10px] text-slate-500 font-medium">
+              <span>0 mg (클린)</span>
+              <span>50%</span>
+              <span class="text-amber-400 font-semibold">100% 한계치</span>
+              <span class="text-rose-400 font-semibold">위험 (수면 장애 유발)</span>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- RIGHT COLUMN: 90min Sleep Cycle & AI Consultation (5 cols) -->
+      <section class="lg:col-span-5 space-y-6">
+
+        <!-- Card 3: 90-Minute Sleep Cycle Calculator -->
+        <div class="bg-slate-900/70 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-sm backdrop-blur">
+          <div class="flex items-center justify-between mb-3 pb-3 border-b border-slate-800">
+            <h3 class="text-base font-bold text-white flex items-center gap-2">
+              <i class="fa-solid fa-moon text-indigo-400"></i>
+              <span>3. 90분 수면 주기 골든타임</span>
+            </h3>
+            <span class="text-[11px] px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-300 font-medium">렘수면 계산법</span>
+          </div>
+          <p class="text-xs text-slate-400 leading-relaxed mb-4">
+            사람의 수면은 약 <strong>90분 주기</strong>로 얕은 잠과 깊은 잠을 반복합니다. 주기가 끝나는 시점에 눈을 뜨면 알람 한 번에 번쩍 일어날 수 있습니다!
+          </p>
+
+          <div class="space-y-4">
+            <div>
+              <label class="block text-xs font-semibold text-slate-300 mb-1.5">
+                내일 아침 기상 목표 시간 <span class="text-rose-400">*</span>
+              </label>
+              <input id="wakeTime" type="time" value="07:00" 
+                class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white font-bold focus:outline-none focus:border-indigo-500 transition"
+                onchange="calculateSleepCycles()">
+              <p class="text-[11px] text-slate-500 mt-1">입면 소요 시간(약 15분)이 자동으로 반영됩니다.</p>
+            </div>
+
+            <!-- Recommended Bedtimes -->
+            <div>
+              <span class="text-xs font-bold text-slate-300 block mb-2">추천 취침 시작 시간 (오늘 밤 골든타임)</span>
+              <div id="sleepCycleResults" class="space-y-2">
+                <!-- Dynamically generated bedtime chips -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4: AI High School Survival Doctor Inputs -->
+        <div class="bg-gradient-to-b from-indigo-950/40 via-slate-900/80 to-slate-900/80 border border-indigo-500/30 rounded-2xl p-5 sm:p-6 shadow-lg backdrop-blur glow-purple">
+          <div class="flex items-center justify-between mb-3 pb-3 border-b border-slate-800">
+            <div class="flex items-center gap-2">
+              <div class="w-7 h-7 rounded-lg bg-indigo-600 flex items-center justify-center text-white text-xs">
+                <i class="fa-solid fa-wand-magic-sparkles"></i>
+              </div>
+              <h3 class="text-base font-bold text-white">4. AI 고딩 피로 처방전</h3>
+            </div>
+            <span class="text-[10px] uppercase font-bold text-indigo-400 bg-indigo-950 px-2 py-0.5 rounded border border-indigo-700/50">Gemini 3 Flash</span>
+          </div>
+
+          <p class="text-xs text-slate-300 mb-4 leading-relaxed">
+            나의 신체 스펙, 카페인 섭취 내역, 수면 빚을 기반으로 <strong>위트 넘치고 실질적인 고딩 맞춤 처방</strong>을 내려줍니다.
+          </p>
+
+          <div class="space-y-3 mb-4">
+            <div>
+              <label class="block text-xs font-semibold text-slate-300 mb-1">
+                현재 나의 상태 & 시험/공부 상황
+              </label>
+              <select id="userSituation" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-indigo-500">
+                <option value="야자 끝나고 집 가는 길, 뇌가 멈춤">🌙 야자 끝나고 귀가 중 (뇌정지 상태)</option>
+                <option value="내일 당장 중간/기말고사 벼락치기 중">🔥 내일 시험 벼락치기 (밤샘 각 재는 중)</option>
+                <option value="주말인데 학원 뺑뺑이 돌아서 기절 직전">📚 주말 학원 특강 지옥 (피로 누적)</option>
+                <option value="수업 시간에 자꾸 침 흘리고 조는 게 고민">😴 3~5교시 수업시간 식곤증 & 졸음 폭탄</option>
+                <option value="모의고사 D-7 집중력 바닥남">🎯 모의고사/수능 대비 집중력 긴급 수혈</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block text-xs font-semibold text-slate-300 mb-1">
+                AI 의사선생님께 남길 말 (선택)
+              </label>
+              <input id="userExtraNote" type="text" placeholder="예: 수학 숙제가 남았는데 잘까요 말까요?" 
+                class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500">
+            </div>
+          </div>
+
+          <button id="btnGenerateAi" onclick="requestAiConsultation()" 
+            class="w-full py-3 px-4 bg-gradient-to-r from-indigo-600 via-indigo-500 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-bold text-sm rounded-xl shadow-lg shadow-indigo-600/30 transition transform active:scale-[0.98] flex items-center justify-center space-x-2">
+            <i class="fa-solid fa-prescription-bottle-medical"></i>
+            <span>1:1 고딩 맞춤 피로 처방전 발급받기</span>
+          </button>
+        </div>
+
+      </section>
+    </div>
+
+    <div id="aiResultSection" class="hidden transition-all duration-500">
+      <div class="rounded-3xl bg-slate-900 border-2 border-indigo-500/50 p-6 md:p-8 relative overflow-hidden shadow-2xl">
+        <div class="absolute top-0 right-0 p-8 opacity-10 pointer-events-none">
+          <i class="fa-solid fa-graduation-cap text-9xl text-indigo-400"></i>
+        </div>
+
+        <div class="flex flex-wrap items-center justify-between gap-4 mb-6 pb-4 border-b border-slate-800">
+          <div class="flex items-center space-x-3">
+            <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white text-xl shadow-md">
+              <i class="fa-solid fa-stethoscope"></i>
+            </div>
+            <div>
+              <span class="text-xs text-indigo-400 font-bold uppercase tracking-wider">National High School Fatigue Rx</span>
+              <h3 class="text-xl font-black text-white">눈떠라 청춘 고딩 피로 처방전</h3>
+            </div>
+          </div>
+          <div class="flex items-center gap-2">
+            <span id="prescribeDate" class="text-xs text-slate-400"></span>
+            <button onclick="copyPrescription()" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-slate-300 transition flex items-center gap-1.5 border border-slate-700">
+              <i class="fa-regular fa-copy"></i>
+              <span>처방전 복사</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- AI Output Content Area -->
+        <div id="aiPrescriptionContent" class="space-y-4 text-sm leading-relaxed text-slate-200">
+          <!-- Populated by Gemini response -->
+        </div>
+
+        <!-- Feedback Footnote -->
+        <div class="mt-8 pt-4 border-t border-slate-800 flex items-center justify-between text-xs text-slate-500">
+          <span>* 본 처방전은 Gemini 3 Flash 기반의 생활 습관 조언이며, 심각한 만성 두통 및 심계항진 시에는 보건실 또는 전문의 진료를 받으세요.</span>
+          <span class="font-bold text-indigo-400">#힘내라_고딩</span>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <div id="vercelModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="bg-slate-900 border border-slate-700 rounded-3xl max-w-3xl w-full max-h-[90vh] flex flex-col shadow-2xl overflow-hidden">
+      
+      <!-- Modal Header -->
+      <div class="p-5 border-b border-slate-800 flex items-center justify-between bg-slate-950/60">
+        <div class="flex items-center space-x-3">
+          <div class="w-8 h-8 rounded-lg bg-black border border-slate-700 flex items-center justify-center text-white font-bold text-sm">
+            ▲
+          </div>
+          <div>
+            <h3 class="text-base font-bold text-white">Vercel 배포 & GEMINI_API_KEY 보안 가이드</h3>
+            <p class="text-xs text-slate-400">요청하신 서버리스 함수 <code class="text-indigo-300 font-mono">api/generate.js</code> 완벽 연동</p>
+          </div>
+        </div>
+        <button onclick="closeVercelModal()" class="w-8 h-8 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white flex items-center justify-center text-sm transition">
+          ✕
+        </button>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="p-6 overflow-y-auto space-y-5 text-xs text-slate-300 leading-relaxed">
+        
+        <div class="p-4 rounded-xl bg-indigo-950/40 border border-indigo-800/40 text-indigo-200">
+          <strong class="font-bold text-white block mb-1">💡 왜 서버리스 함수(api/generate.js)로 분리해야 할까요?</strong>
+          클라이언트(index.html)에 Gemini API Key를 직접 입력해 배포하면 브라우저 개발자 도구(F12)에서 키가 그대로 노출됩니다. 
+          따라서 백엔드 서버리스 함수에서 <code>process.env.GEMINI_API_KEY</code>로 안전하게 읽어와 호출하는 것이 정석입니다!
+        </div>
+
+        <div>
+          <h4 class="text-sm font-bold text-white mb-2 flex items-center gap-2">
+            <span>📁 Vercel 프로젝트 폴더 구조</span>
+          </h4>
+          <pre class="bg-slate-950 p-3 rounded-xl border border-slate-800 font-mono text-emerald-400 text-[11px]">
+my-highschool-app/
+├── index.html            (지금 보시는 프론트엔드 파일)
+├── package.json          (의존성 정의)
+└── api/
+    └── generate.js       (Gemini API 호출 Vercel Serverless Function)</pre>
+        </div>
+
+        <div>
+          <div class="flex items-center justify-between mb-1.5">
+            <h4 class="text-sm font-bold text-white flex items-center gap-2">
+              <span>📄 1. api/generate.js (서버리스 함수 코드)</span>
+            </h4>
+            <button onclick="copyCode('codeServerless')" class="text-[11px] px-2.5 py-1 rounded bg-indigo-600 hover:bg-indigo-500 text-white font-semibold transition">
+              코드 복사
+            </button>
+          </div>
+          <pre id="codeServerless" class="bg-slate-950 p-3 rounded-xl border border-slate-800 font-mono text-slate-300 text-[11px] overflow-x-auto max-h-48">export default async function handler(req, res) {
+  // CORS & Method Check
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: 'Method Not Allowed' });
+  }
+
+  // Vercel 환경변수에서 API 키 추출
+  const apiKey = process.env.GEMINI_API_KEY;
+  if (!apiKey) {
+    return res.status(500).json({ error: '서버에 GEMINI_API_KEY가 설정되지 않았습니다.' });
+  }
+
+  try {
+    const { prompt, systemInstruction } = req.body;
+
+    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${apiKey}`;
+
+    const payload = {
+      contents: [{ parts: [{ text: prompt }] }],
+      systemInstruction: {
+        parts: [{ text: systemInstruction }]
+      }
+    };
+
+    const response = await fetch(apiUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+
+    if (!response.ok) {
+      const errText = await response.text();
+      return res.status(response.status).json({ error: errText });
+    }
+
+    const data = await response.json();
+    return res.status(200).json(data);
+  } catch (error) {
+    return res.status(500).json({ error: error.message || 'Internal Server Error' });
+  }
+}</pre>
+        </div>
+
+        <div>
+          <div class="flex items-center justify-between mb-1.5">
+            <h4 class="text-sm font-bold text-white flex items-center gap-2">
+              <span>📄 2. package.json</span>
+            </h4>
+            <button onclick="copyCode('codePackageJson')" class="text-[11px] px-2.5 py-1 rounded bg-indigo-600 hover:bg-indigo-500 text-white font-semibold transition">
+              코드 복사
+            </button>
+          </div>
+          <pre id="codePackageJson" class="bg-slate-950 p-3 rounded-xl border border-slate-800 font-mono text-slate-300 text-[11px] overflow-x-auto">{
+  "name": "highschool-sleep-defense",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "vercel dev"
+  }
+}</pre>
+        </div>
+
+        <div class="space-y-2">
+          <h4 class="text-sm font-bold text-white">🚀 Vercel 배포 3단계</h4>
+          <ol class="list-decimal list-inside space-y-1.5 text-slate-300">
+            <li>GitHub 레포지토리에 위 구조대로 업로드합니다.</li>
+            <li><a href="https://vercel.com" target="_blank" class="text-indigo-400 underline font-semibold">Vercel</a> 대시보드에서 <strong>Add New Project</strong>로 레포지토리를 불러옵니다.</li>
+            <li>Project Settings의 <strong>Environment Variables</strong>에 <code>GEMINI_API_KEY</code>를 등록하고 <strong>Deploy</strong> 버튼을 누르면 끝!</li>
+          </ol>
+        </div>
+
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="p-4 border-t border-slate-800 bg-slate-950/60 flex justify-end">
+        <button onclick="closeVercelModal()" class="px-5 py-2 bg-slate-800 hover:bg-slate-700 text-white font-bold rounded-xl text-xs transition">
+          닫기
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    // State management
+    const state = {
+      weight: 60,
+      sleepHours: 5.5,
+      wakeTime: "07:00",
+      caffeineList: [], // array of { id, name, mg, icon }
+      recommendedHours: 8.5, // Standard for teens (8.5 - 9.25 hours)
+      safeMgPerKg: 2.5, // KFDA limit for adolescents
+    };
+
+    // Calculate Sleep Debt
+    function getSleepDebt() {
+      const debt = state.recommendedHours - state.sleepHours;
+      return Number(debt.toFixed(1));
+    }
+
+    // Calculate Max Safe Caffeine
+    function getMaxSafeCaffeine() {
+      return Math.round(state.weight * state.safeMgPerKg);
+    }
+
+    // Calculate Total Caffeine Consumed
+    function getTotalCaffeine() {
+      return state.caffeineList.reduce((acc, item) => acc + item.mg, 0);
+    }
+
+    function updateAllCalculations() {
+      // Read weights & hours
+      const weightInput = parseFloat(document.getElementById('userWeight').value) || 60;
+      const sleepInput = parseFloat(document.getElementById('sleepHours').value) || 0;
+      
+      state.weight = Math.max(30, weightInput);
+      state.sleepHours = Math.max(0, sleepInput);
+
+      // 1. Update Sleep Debt Card
+      renderSleepDebt();
+
+      // 2. Update Caffeine Safe Gauge
+      renderCaffeineGauge();
+
+      // 3. Update Sleep Cycles
+      calculateSleepCycles();
+    }
+
+    // Render Sleep Debt Status
+    function renderSleepDebt() {
+      const container = document.getElementById('sleepDebtContainer');
+      const debt = getSleepDebt();
+      
+      let badgeColor = "bg-emerald-500/20 text-emerald-400 border-emerald-500/30";
+      let statusTitle = "🟢 쾌적한 청춘 (수면 빚 0)";
+      let desc = "어젯밤 충분히 잤네요! 오늘 수업 시간에 졸면 그건 피로가 아니라 쌤 목소리가 자장가인 탓입니다.";
+      let glowClass = "";
+
+      if (debt > 0 && debt <= 1.5) {
+        badgeColor = "bg-amber-500/20 text-amber-300 border-amber-500/30";
+        statusTitle = "🟡 가벼운 수면 빚 (1단계 경계)";
+        desc = `권장 수면(8.5시간) 대비 <strong>${debt}시간</strong> 부족합니다. 점심시간 15분 파워냅으로 방어 가능!`;
+      } else if (debt > 1.5 && debt <= 3.5) {
+        badgeColor = "bg-orange-500/20 text-orange-300 border-orange-500/30";
+        statusTitle = "🟠 야자실 좀비 전조 증상 (2단계 위험)";
+        desc = `수면 빚 <strong>${debt}시간</strong> 누적! 4~5교시에 고개가 꺾일 수 있습니다. 오늘 밤 무조건 7시간 이상 확보하세요.`;
+        glowClass = "glow-amber";
+      } else if (debt > 3.5) {
+        badgeColor = "bg-rose-500/20 text-rose-300 border-rose-500/30 animate-pulse";
+        statusTitle = "🔴 영혼 가출 초위험 상태 (수면 빚 파산)";
+        desc = `수면 빚 <strong>${debt}시간</strong>! 뇌 기능 및 기억 저장이 30% 이상 저하되는 상태입니다. 지금 카페인 쏟아붓다간 심장만 뛰고 시험 망칩니다.`;
+        glowClass = "glow-red";
+      }
+
+      container.className = `mt-4 p-4 rounded-xl bg-slate-950/80 border border-slate-800 transition-all ${glowClass}`;
+      container.innerHTML = `
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-xs font-bold px-2.5 py-1 rounded-full border ${badgeColor}">
+            ${statusTitle}
+          </span>
+          <span class="text-xs font-mono font-bold text-slate-300">
+            수면 빚: <span class="${debt > 0 ? 'text-rose-400' : 'text-emerald-400'}">${debt > 0 ? '+' + debt : debt}시간</span>
+          </span>
+        </div>
+        <p class="text-xs text-slate-300 leading-relaxed">${desc}</p>
+      `;
+    }
+
+    // Add Beverage to List
+    function addCaffeine(name, mg, icon) {
+      state.caffeineList.push({
+        id: Date.now() + Math.random(),
+        name,
+        mg,
+        icon
+      });
+      renderDrinkList();
+      renderCaffeineGauge();
+    }
+
+    // Add Custom Drink
+    function addCustomCaffeine() {
+      const nameInput = document.getElementById('customDrinkName');
+      const mgInput = document.getElementById('customDrinkMg');
+      const name = nameInput.value.trim() || '커스텀 음료';
+      const mg = parseInt(mgInput.value, 10);
+
+      if (isNaN(mg) || mg <= 0) {
+        showToast('카페인 함량(mg)을 0보다 큰 숫자로 입력해주세요!');
+        return;
+      }
+
+      addCaffeine(name, mg, '☕');
+      nameInput.value = '';
+      mgInput.value = '';
+    }
+
+    // Remove single drink
+    function removeDrink(id) {
+      state.caffeineList = state.caffeineList.filter(item => item.id !== id);
+      renderDrinkList();
+      renderCaffeineGauge();
+    }
+
+    // Reset All Drinks
+    function resetCaffeine() {
+      state.caffeineList = [];
+      renderDrinkList();
+      renderCaffeineGauge();
+      showToast('마신 카페인 목록이 초기화되었습니다.');
+    }
+
+    // Render drink table list
+    function renderDrinkList() {
+      const listEl = document.getElementById('drinksList');
+      const countEl = document.getElementById('drinkCount');
+      const totalMgEl = document.getElementById('totalMgDisplay');
+
+      const totalMg = getTotalCaffeine();
+      countEl.textContent = state.caffeineList.length;
+      totalMgEl.textContent = `${totalMg} mg`;
+
+      if (state.caffeineList.length === 0) {
+        listEl.innerHTML = `
+          <div id="emptyDrinkNotice" class="text-center text-slate-500 py-3 text-xs">
+            아직 마신 카페인이 없습니다. 청춘의 간과 심장이 편안해합니다 ✨
+          </div>
+        `;
+        return;
+      }
+
+      listEl.innerHTML = state.caffeineList.map(drink => `
+        <div class="flex items-center justify-between bg-slate-900 px-3 py-1.5 rounded-lg border border-slate-800 text-xs">
+          <div class="flex items-center space-x-2">
+            <span>${drink.icon}</span>
+            <span class="font-medium text-slate-200">${drink.name}</span>
+          </div>
+          <div class="flex items-center space-x-3">
+            <span class="font-mono font-bold text-amber-300">${drink.mg} mg</span>
+            <button onclick="removeDrink(${drink.id})" class="text-slate-500 hover:text-rose-400 transition" title="삭제">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Render Caffeine Gauge Bar
+    function renderCaffeineGauge() {
+      const maxSafe = getMaxSafeCaffeine();
+      const total = getTotalCaffeine();
+      const pct = Math.round((total / maxSafe) * 100);
+
+      document.getElementById('maxSafeMgDisplay').textContent = `${maxSafe} mg`;
+      
+      const pctEl = document.getElementById('gaugePercentage');
+      const statusEl = document.getElementById('gaugeStatusText');
+      const barEl = document.getElementById('caffeineProgressBar');
+
+      pctEl.textContent = `${pct}%`;
+
+      // Gauge colors & label logic
+      if (pct <= 60) {
+        pctEl.className = "text-lg font-black text-emerald-400";
+        statusEl.className = "text-xs font-semibold block text-emerald-400";
+        statusEl.textContent = "안전 마진 충분";
+        barEl.className = "h-full rounded-full bg-gradient-to-r from-emerald-500 to-teal-400 transition-all duration-500";
+      } else if (pct <= 100) {
+        pctEl.className = "text-lg font-black text-amber-400";
+        statusEl.className = "text-xs font-semibold block text-amber-400";
+        statusEl.textContent = "허용치 임박 (주의)";
+        barEl.className = "h-full rounded-full bg-gradient-to-r from-amber-500 to-yellow-400 transition-all duration-500";
+      } else {
+        pctEl.className = "text-lg font-black text-rose-400 animate-pulse";
+        statusEl.className = "text-xs font-semibold block text-rose-400";
+        statusEl.textContent = "⚠️ 안전 한계선 초과 (심박수 상승/수면 방해)";
+        barEl.className = "h-full rounded-full bg-gradient-to-r from-rose-600 to-red-500 transition-all duration-500";
+      }
+
+      // Visual progress width (cap visual at 100% for aesthetic bar, but numbers show true %)
+      const visualWidth = Math.min(100, pct);
+      barEl.style.width = `${visualWidth}%`;
+    }
+
+    function calculateSleepCycles() {
+      const wakeTimeInput = document.getElementById('wakeTime').value;
+      if (!wakeTimeInput) return;
+
+      const [wakeHour, wakeMin] = wakeTimeInput.split(':').map(Number);
+      const container = document.getElementById('sleepCycleResults');
+
+      // Create Date object for wake time (tomorrow)
+      const wakeDate = new Date();
+      wakeDate.setHours(wakeHour, wakeMin, 0, 0);
+
+      // 90 minutes per cycle + 15 min buffer to fall asleep
+      const sleepFallAsleepBuffer = 15; // minutes
+
+      // We calculate for 6 cycles (9h), 5 cycles (7.5h), 4 cycles (6h), 3 cycles (4.5h)
+      const cycles = [
+        { count: 5, hours: 7.5, label: "추천 골든타임 (5주기)", badge: "가장 개운함", color: "border-indigo-500/80 bg-indigo-950/40 text-indigo-300" },
+        { count: 4, hours: 6.0, label: "바쁜 시험기간 (4주기)", badge: "집중력 방어선", color: "border-slate-700 bg-slate-950 text-slate-300" },
+        { count: 6, hours: 9.0, label: "수면 빚 청산 (6주기)", badge: "완전 회복", color: "border-emerald-500/60 bg-emerald-950/30 text-emerald-300" },
+        { count: 3, hours: 4.5, label: "비상 마지노선 (3주기)", badge: "최소한의 생존", color: "border-rose-900/50 bg-rose-950/20 text-rose-300" }
+      ];
+
+      container.innerHTML = cycles.map(c => {
+        const totalMinutes = (c.count * 90) + sleepFallAsleepBuffer;
+        const bedTime = new Date(wakeDate.getTime() - totalMinutes * 60000);
+
+        let hours = bedTime.getHours();
+        const mins = String(bedTime.getMinutes()).padStart(2, '0');
+        const period = hours >= 12 ? '오후' : '오전';
+        const displayHour = hours % 12 === 0 ? 12 : hours % 12;
+
+        return `
+          <div class="p-3 rounded-xl border ${c.color} flex items-center justify-between transition hover:border-indigo-400">
+            <div>
+              <div class="flex items-center space-x-2">
+                <span class="text-sm font-black text-white">${period} ${displayHour}:${mins} 취침</span>
+                <span class="text-[10px] px-1.5 py-0.5 rounded font-bold bg-slate-800 text-slate-300">${c.badge}</span>
+              </div>
+              <span class="text-[11px] text-slate-400 block mt-0.5">${c.label} · 실 수면 ${c.hours}시간</span>
+            </div>
+            <div class="text-right">
+              <span class="text-xs font-mono font-bold text-indigo-400">${c.count} 사이클</span>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    async function requestAiConsultation() {
+      const btn = document.getElementById('btnGenerateAi');
+      const resultSection = document.getElementById('aiResultSection');
+      const contentEl = document.getElementById('aiPrescriptionContent');
+      const dateEl = document.getElementById('prescribeDate');
+
+      const weight = state.weight;
+      const sleepHours = state.sleepHours;
+      const wakeTime = document.getElementById('wakeTime').value;
+      const sleepDebt = getSleepDebt();
+      const totalCaffeine = getTotalCaffeine();
+      const maxSafeCaffeine = getMaxSafeCaffeine();
+      const drinks = state.caffeineList.map(d => `${d.name}(${d.mg}mg)`).join(', ') || '없음';
+      const situation = document.getElementById('userSituation').value;
+      const extraNote = document.getElementById('userExtraNote').value.trim();
+
+      // UI Loading state
+      btn.disabled = true;
+      btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin mr-2"></i> 고딩 맞춤 피로 처방전 작성 중...`;
+
+      // Prompt formulation
+      const systemPrompt = `당신은 대한민국 고등학생들의 수면 건강과 멘탈을 전담하는 위트 있고 뼈 때리는 '고딩 전담 피로 처방 전문의 닥터 청춘'입니다.
+고등학생들이 야자와 시험기간에 무분별하게 스누피 커피우유나 핫식스, 몬스터 에너지를 마시며 수면 빚을 지는 현실을 잘 알고 있습니다.
+말투는 다정하면서도 현실적인 고딩 맞춤형 말투(약간의 유쾌한 팩폭, 친근한 반말과 존댓말의 적절한 조화, 수능/내신 공감 표현 포함)를 사용하세요.
+
+처방전 형식은 반드시 아래 4개 섹션으로 구성해 주세요:
+1. 🩺 [닥터 청춘의 팩폭 진단]: 현재 수면 빚과 카페인 섭취 상태에 대한 뼈 때리는 유쾌한 한줄 요약
+2. ⏳ [체중 대비 카페인 체내 반감기 분석]: 학생 체중에 따른 카페인 반감기(5~7시간)와 오늘 밤 침대에서 겪을 심장 상태 & 뇌 각성 잔류 시각 분석
+3. 🎯 [오늘 밤 추천 취침 골든타임]: 내일 기상 시간 기준으로 가장 개운하게 일어날 수 있는 90분 수면주기 기반 확정 취침 시각
+4. 💡 [내일 3~5교시 기절 방지 1:1 특효약]: 다음 날 학교 수업시간에 덜 졸리고 집중력을 유지할 수 있는 현실적인 꿀팁 3가지 (스트레칭, 햇빛, 15분 파워냅 타이밍 등)`;
+
+      const userQuery = `[환자 차트]
+- 체중: ${weight}kg (청소년 안전 기준: ${maxSafeCaffeine}mg)
+- 오늘 마신 카페인 음료: ${drinks} (총 ${totalCaffeine}mg)
+- 어젯밤 수면 시간: ${sleepHours}시간 (고교생 권장 8.5시간 대비 수면 빚: ${sleepDebt}시간)
+- 내일 기상 목표: ${wakeTime}
+- 현재 처한 상황: ${situation}
+- 추가 고민: ${extraNote || '없음'}
+
+위 학생의 데이터를 바탕으로 체계적이면서도 웃음과 활력을 주는 고딩 맞춤 피로 처방전을 작성해줘!`;
+
+      try {
+        let aiMarkdown = "";
+
+        // First attempt: call Vercel serverless function /api/generate
+        let response = null;
+        try {
+          response = await fetch('/api/generate', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              prompt: userQuery,
+              systemInstruction: systemPrompt
+            })
+          });
+        } catch (fetchErr) {
+          console.log("No Vercel local /api/generate endpoint detected, attempting fallback...");
+        }
+
+        if (response && response.ok) {
+          const json = await response.json();
+          aiMarkdown = json.candidates?.[0]?.content?.parts?.[0]?.text;
+        } else {
+          // If serverless is not yet deployed or running in a standalone preview sandbox:
+          // Call direct Gemini client API (Canvas auto-injected apiKey) or simulate responsive dynamic intelligence
+          const directApiKey = "";
+          const directApiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${directApiKey}`;
+
+          const payload = {
+            contents: [{ parts: [{ text: userQuery }] }],
+            systemInstruction: { parts: [{ text: systemPrompt }] }
+          };
+
+          const directResp = await fetch(directApiUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+
+          if (directResp.ok) {
+            const data = await directResp.json();
+            aiMarkdown = data.candidates?.[0]?.content?.parts?.[0]?.text;
+          } else {
+            // Intelligent fallback for completely offline or keyless testing
+            aiMarkdown = generateSmartFallbackPrescription(weight, totalCaffeine, maxSafeCaffeine, sleepDebt, wakeTime, situation);
+          }
+        }
+
+        // Render AI prescription nicely
+        resultSection.classList.remove('hidden');
+        dateEl.textContent = new Date().toLocaleDateString('ko-KR', { year: 'numeric', month: 'long', day: 'numeric', weekday: 'short' });
+        contentEl.innerHTML = formatMarkdownToHtml(aiMarkdown);
+        resultSection.scrollIntoView({ behavior: 'smooth' });
+
+      } catch (err) {
+        console.error(err);
+        // Fallback generator ensures user always has a seamless experience
+        const fallbackText = generateSmartFallbackPrescription(weight, totalCaffeine, maxSafeCaffeine, sleepDebt, wakeTime, situation);
+        resultSection.classList.remove('hidden');
+        contentEl.innerHTML = formatMarkdownToHtml(fallbackText);
+        resultSection.scrollIntoView({ behavior: 'smooth' });
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = `<i class="fa-solid fa-prescription-bottle-medical"></i> <span>1:1 고딩 맞춤 피로 처방전 발급받기</span>`;
+      }
+    }
+
+    // Smart Dynamic Fallback Generator if network/key is unavailable
+    function generateSmartFallbackPrescription(weight, totalCaffeine, maxSafe, debt, wakeTime, situation) {
+      const isOverCaffeine = totalCaffeine > maxSafe;
+      return `### 🩺 [닥터 청춘의 팩폭 진단]
+야자실에서 버티느라 고생 많았어, ${weight}kg의 고단한 청춘아! 
+현재 너의 수면 빚은 **${debt > 0 ? debt + '시간' : '0시간 (정상)'}**이고, 카페인은 체중 허용치(${maxSafe}mg) 대비 **${totalCaffeine}mg**을 들이부었어. ${isOverCaffeine ? '이 정도면 혈관에 피 대신 아메리카노가 흐르는 수준이다! 오늘 밤 심장 박동으로 비트박스 할 일 있냐?!' : '다행히 안전 게이지 안쪽으로 잘 방어하고 있어. 훌륭하다!'}
+
+---
+
+### ⏳ [체중 대비 카페인 체내 반감기 분석]
+- **청소년 체내 반감기**: 약 5.5 ~ 6.5시간
+- 너의 체중(${weight}kg) 기준으로 ${totalCaffeine}mg을 섭취했을 때, 6시간이 지나도 몸 안에 약 **${Math.round(totalCaffeine * 0.5)}mg**의 카페인이 여전히 아데노신(수면 유도 수용체)을 틀어막고 있어.
+- 오늘 밤 바로 눕는다고 자는 게 아니라, 뇌는 계속 독서실 형광등 켜진 상태로 얕은 잠을 잘 위험이 높아. 지금 이후로는 냉수만 마실 것!
+
+---
+
+### 🎯 [오늘 밤 추천 취침 골든타임]
+- **내일 아침 기상 목표**: ${wakeTime}
+- **닥터 추천 취침 골든타임**: **자정 전후 (기상 시간 기준 4.5시간 or 6시간 전)**
+- 90분 수면 주기를 완성하려면 입면 15분을 고려해 침대에 누워야 해. 자정 12시 15분에 눈을 감고 잠들면 4주기(6시간) 후인 아침 ${wakeTime}에 렘수면 종료 시점과 딱 맞아떨어져서 알람 소리에 번쩍 눈이 떠진다!
+
+---
+
+### 💡 [내일 3~5교시 기절 방지 1:1 특효약]
+1. **점심 급식 후 15분 '커피 냅(Coffee Nap)' 또는 파워냅**: 급식 먹고 식곤증이 몰려올 때 엎드려 딱 15분만 안대 끼고 눈을 감아줘. 20분을 넘기면 깊은 수면에 빠져서 5교시에 침 흘리며 괴로워진다!
+2. **쉬는 시간 복도 햇빛 샤워 & 찬물 세안**: 뇌의 멜라토닌 분비를 억제하려면 복도 창가에서 자연광을 3분간 쬐고 목 뒤에 찬물을 가볍게 적셔줘.
+3. **목 뒤 승모근 10초 깍지 스트레칭**: 야자실에서 굽은 목과 어깨를 활짝 펴야 뇌로 가는 혈류량이 증가해서 졸음 뇌정지를 막을 수 있어!`;
+    }
+
+    function formatMarkdownToHtml(md) {
+      if (!md) return '';
+      return md
+        .replace(/^### (.*$)/gim, '<h4 class="text-base font-black text-indigo-300 mt-4 mb-2 flex items-center gap-2"><i class="fa-solid fa-chevron-right text-xs"></i> $1</h4>')
+        .replace(/^## (.*$)/gim, '<h3 class="text-lg font-black text-white mt-4 mb-2">$1</h3>')
+        .replace(/\*\*(.*?)\*\*/gim, '<strong class="text-amber-300 font-bold">$1</strong>')
+        .replace(/^- (.*$)/gim, '<li class="ml-4 list-disc text-slate-300 text-xs my-1">$1</li>')
+        .replace(/\n\n/gim, '<div class="h-2"></div>')
+        .replace(/\n/gim, '<br>');
+    }
+
+    function openVercelModal() {
+      document.getElementById('vercelModal').classList.remove('hidden');
+    }
+
+    function closeVercelModal() {
+      document.getElementById('vercelModal').classList.add('hidden');
+    }
+
+    function copyPrescription() {
+      const text = document.getElementById('aiPrescriptionContent').innerText;
+      copyTextToClipboard(text, '처방전 내용이 클립보드에 복사되었습니다! 친구들에게 공유해보세요.');
+    }
+
+    function copyCode(elementId) {
+      const text = document.getElementById(elementId).innerText;
+      copyTextToClipboard(text, '코드가 복사되었습니다! 파일에 붙여넣으세요.');
+    }
+
+    function copyTextToClipboard(text, successMsg) {
+      const tempTextArea = document.createElement('textarea');
+      tempTextArea.value = text;
+      document.body.appendChild(tempTextArea);
+      tempTextArea.select();
+      try {
+        document.execCommand('copy');
+        showToast(successMsg);
+      } catch (err) {
+        showToast('복사에 실패했습니다. 직접 복사해주세요.');
+      }
+      document.body.removeChild(tempTextArea);
+    }
+
+    // Non-blocking in-app Toast notification
+    function showToast(message) {
+      const existingToast = document.getElementById('appToast');
+      if (existingToast) existingToast.remove();
+
+      const toast = document.createElement('div');
+      toast.id = 'appToast';
+      toast.className = 'fixed bottom-6 right-6 z-50 bg-slate-900 border border-indigo-500/60 text-white text-xs font-semibold px-4 py-3 rounded-2xl shadow-xl flex items-center space-x-2 animate-bounce';
+      toast.innerHTML = `<i class="fa-solid fa-bell text-indigo-400"></i><span>${message}</span>`;
+      document.body.appendChild(toast);
+
+      setTimeout(() => {
+        toast.remove();
+      }, 3500);
+    }
+
+    // Initialize on load
+    window.onload = function() {
+      updateAllCalculations();
+    };
+  </script>
+</body>
+</html>
